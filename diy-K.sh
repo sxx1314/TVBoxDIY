@@ -53,8 +53,9 @@ sed -i '/private void parseJson(String apiUrl, String jsonStr)/a\        PythonL
 sed -i '/public Spider getCSP(SourceBean sourceBean)/a\        if (sourceBean.getApi().startsWith(\"py_\")) {\n        try {\n            return PythonLoader.getInstance().getSpider(sourceBean.getKey(), sourceBean.getExt());\n        } catch (Exception e) {\n            e.printStackTrace();\n            return new SpiderNull();\n        }\n    }' $CURRENT_DIR/$DIR/app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
 sed -i '/public Object\[\] proxyLoca/a\    try {\n        if(param.containsKey(\"api\")){\n            String doStr = param.get(\"do\").toString();\n            if(doStr.equals(\"ck\"))\n                return PythonLoader.getInstance().proxyLocal(\"\",\"\",param);\n            SourceBean sourceBean = ApiConfig.get().getSource(doStr);\n            return PythonLoader.getInstance().proxyLocal(sourceBean.getKey(),sourceBean.getExt(),param);\n        }else{\n            String doStr = param.get(\"do\").toString();\n            if(doStr.equals(\"live\")) return PythonLoader.getInstance().proxyLocal(\"\",\"\",param);\n        }\n    } catch (Exception e) {\n        e.printStackTrace();\n    }\n' $CURRENT_DIR/$DIR/app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
 #add build time
-date=$(TZ=Asia/Shanghai date -d @`date +%s` "+%Y-%m-%d %H:%M:%S")
-sed -i 's/https:\/\/github.com\/kensonmiao\/CatVodTVOSC/https:\/\/github.com\/sxx1314\/CatVodTVOSC\\n编译日期：'$date'/g' ./app/src/main/res/layout/dialog_about.xml
+date1=$(TZ=UTC+8 date "+%Y-%m-%d")
+date2=$(TZ=UTC+8 date "+%H:%M:%S")
+sed -i 's/https:\/\/github.com\/q215613905\/TVBoxOS/https:\/\/github.com\/sxx1314\/CatVodTVOSC\\n编译日期：'$date1' '$date2'/g' ./app/src/main/res/layout/dialog_about.xml
 #FongMi的jar支持
 echo "" >>$CURRENT_DIR/$DIR/app/proguard-rules.pro
 echo "-keep class com.google.gson.**{*;}" >>$CURRENT_DIR/$DIR/app/proguard-rules.pro
