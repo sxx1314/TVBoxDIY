@@ -45,8 +45,9 @@ mv $CURRENT_DIR/DIY2/app_bg.png $CURRENT_DIR/$DIR/app/src/main/res/drawable/app_
 #sed -i 's/width=\"wrap_content\"/width=\"match_parent\"/g' $CURRENT_DIR/$DIR/app/src/main/res/layout/item_series.xml
 #sed -i 's/@dimen\/vs_190/match_parent/g' $CURRENT_DIR/$DIR/app/src/main/res/layout/item_series.xml
 #add build time
-date=$(TZ=Asia/Shanghai date -d @`date +%s` "+%Y-%m-%d %H:%M:%S")
-sed -i 's/https:\/\/github.com\/CatVodTVOfficial\/TVBoxOSC/https:\/\/github.com\/sxx1314\/CatVodTVOSC\\n编译日期：'$date'/g' ./app/src/main/res/layout/dialog_about.xml
+date1=$(TZ=UTC+8 date "+%Y-%m-%d")
+date2=$(TZ=UTC+8 date "+%H:%M:%S")
+sed -i 's/https:\/\/github.com\/q215613905\/TVBoxOS/https:\/\/github.com\/sxx1314\/CatVodTVOSC\\n编译日期：'$date1' '$date2'/g' ./app/src/main/res/layout/dialog_about.xml
 #FongMi的jar支持
 echo "" >>$CURRENT_DIR/$DIR/app/proguard-rules.pro
 echo "-keep class com.google.gson.**{*;}" >>$CURRENT_DIR/$DIR/app/proguard-rules.pro
